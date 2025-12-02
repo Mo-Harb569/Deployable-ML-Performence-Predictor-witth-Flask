@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>توقع أداء الطالب</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .container {
+            background-color: white;
+            width: 400px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #007bff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>📊 توقع معدل الطالب</h1>
+        <form action="/predict" method="post">
+            <label>ساعات الدراسة:</label>
+            <input type="number" step="0.1" name="hours" placeholder="مثلاً: 7.5" required>
+
+            <label>الدرجات السابقة:</label>
+            <input type="number" step="0.1" name="previous_scores" placeholder="مثلاً: 85" required>
+
+            <label>ساعات النوم:</label>
+            <input type="number" step="0.1" name="sleep_hours" placeholder="مثلاً: 8" required>
+
+            <label>نماذج الاختبارات المُمارسة:</label>
+            <input type="number" name="sample_papers" placeholder="مثلاً: 5" required>
+
+            <label>أنشطة لامنهجية:</label>
+            <select name="activities">
+                <option value="1">نعم</option>
+                <option value="0">لا</option>
+            </select>
+
+            <button type="submit">توقع النتيجة</button>
+        </form>
+
+        <div class="result">{{ prediction_text }}</div>
+    </div>
+
+</body>
+
+</html>
